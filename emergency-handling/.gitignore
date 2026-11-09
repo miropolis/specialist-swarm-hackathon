@@ -1,0 +1,7 @@
+.state/
+__pycache__/
+outputs/session-events.json
+outputs/session.json
+outputs/input.json
+outputs/specialist-findings.json
+outputs/coordinator-transcript.txt

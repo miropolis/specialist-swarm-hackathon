@@ -1,0 +1,44 @@
+{
+  "incident_id": "EXERCISE-RIVERBEND-2026-11-06",
+  "exercise_only": true,
+  "as_of": "2026-11-06T09:00:00-05:00",
+  "emergency_types": ["flooding", "power_outage", "water_outage"],
+  "description": "FICTIONAL EXERCISE. Overnight rain has flooded low streets in Riverbend. Power is out and tap water is unavailable. The house is dry now, but water is visible at the end of the street. The household needs a safe plan for the next 24 hours, especially drinking water. No one is currently injured or reporting acute symptoms.",
+  "location": {
+    "country": "United States",
+    "town": "Riverbend (fictional)",
+    "neighborhood": "East Orchard (fictional)",
+    "home": "Two-story house, bedrooms upstairs, no basement, ground-floor accessible bedroom and bathroom",
+    "hazard_context": "Low-lying neighborhood near a fictional river; no verified safe route is supplied",
+    "emergency_number": "911",
+    "meeting_point": "Upstairs landing only if accessible and safe; outdoor reunion location must be confirmed locally"
+  },
+  "household": [
+    {"name": "Alex", "age": 38, "role": "adult caregiver", "health": "No known conditions", "mobility": "Independent"},
+    {"name": "Sam", "age": 36, "role": "adult caregiver", "health": "No known conditions", "mobility": "Independent"},
+    {"name": "Maya", "age": 9, "role": "child", "health": "Asthma; prescribed rescue inhaler and spacer available; follow existing clinician action plan", "mobility": "Independent; anxious about the outage"},
+    {"name": "Ruth", "age": 72, "role": "grandparent", "health": "Routine daily medication available for 7 days; no powered medical device", "mobility": "Uses a walker; stairs require assistance and may not be safe"}
+  ],
+  "resources": {
+    "sealed_drinking_water_liters": 6,
+    "other_water": "No safe tap supply; rain barrel water is untreated and potentially contaminated",
+    "food": "Two days of shelf-stable, ready-to-eat food for four; manual can opener",
+    "lighting": "Two battery torches; spare batteries; no need for candles",
+    "communications": "Battery AM/FM weather radio, two phones at 65% and 40%, one fully charged 10000 mAh power bank; mobile service intermittent",
+    "navigation": "Paper street map and compass; neither proves a route is flood-free",
+    "medical": "Basic first-aid kit, prescribed rescue inhaler with spacer, 7-day routine medication supply, printed medication list",
+    "transport": "One car with half a tank, parked on dry driveway; route safety unknown",
+    "sanitation": "Soap, hand sanitizer, rubbish bags, gloves; toilets may become unusable if sewers back up",
+    "shelter": "Blankets, warm clothes, waterproof jackets, walker; no generator or indoor fuel-burning equipment",
+    "cash_usd": 80,
+    "pets": "None"
+  },
+  "skills": [
+    {"person": "Alex", "expertise": "Basic first-aid course last year; can monitor the radio and pack medication"},
+    {"person": "Sam", "expertise": "Camping experience, paper-map reading, household inventory and phone charging"},
+    {"person": "Ruth", "expertise": "Knows household medication routines; can help maintain a written check-in list"},
+    {"person": "Maya", "expertise": "Can choose comfort items and tell an adult if breathing changes; no hazardous tasks"}
+  ],
+  "priorities": ["Avoid floodwater and electrical hazards", "Obtain verified safe drinking water without hazardous travel", "Plan accessible evacuation before conditions worsen", "Keep family calm and monitor health"],
+  "unknowns": ["Current street-level water trend", "Safe accessible evacuation transport", "Actual shelter accessibility and opening status", "Water distribution location", "Restoration times"]
+}

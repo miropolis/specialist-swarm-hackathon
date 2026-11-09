@@ -25,6 +25,32 @@ SUPPORTING_FILES = [
 OUTPUT_DIR = Path("outputs")
 
 
+def format_list_cost(list_cost: object) -> str:
+    if list_cost is None:
+        return "n/a"
+
+    amount = getattr(list_cost, "amount", None)
+    currency = getattr(list_cost, "currency", "USD")
+    if amount is not None:
+        return f"{currency} {int(amount) / 100:.2f}"
+    return f"USD {float(list_cost):.4f}"
+
+
+def print_usage(label: str, usage: object | None) -> None:
+    if usage is None:
+        print(f"{label}: unavailable")
+        return
+
+    print(
+        f"{label}: "
+        f"input={getattr(usage, 'input_tokens', 0)}, "
+        f"output={getattr(usage, 'output_tokens', 0)}, "
+        f"cache_read={getattr(usage, 'cache_read_input_tokens', 0)}, "
+        f"cache_write={getattr(usage, 'cache_creation_input_tokens', 0)}, "
+        f"list_cost={format_list_cost(getattr(usage, 'list_cost', None))}"
+    )
+
+
 def load_inputs_as_context() -> str:
     blocks = []
     for path in [RFP_PATH, *SUPPORTING_FILES]:
@@ -55,12 +81,28 @@ def main() -> None:
     context = load_inputs_as_context()
 
     print(f"\nStarting session against coordinator {coordinator_id}...")
+    session_args = {
+        "agent": coordinator_id,
+        "environment_id": environment_id,
+        "title": "Deal Desk — Acme Corp RFP",
+    }
+    max_cost_cents = os.environ.get("DEAL_DESK_MAX_LIST_COST_CENTS")
+    if max_cost_cents:
+        if not max_cost_cents.isdigit() or int(max_cost_cents) <= 0:
+            raise SystemExit(
+                "DEAL_DESK_MAX_LIST_COST_CENTS must be a positive whole number."
+            )
+        session_args["budget"] = {
+            "type": "limit",
+            "max_list_cost": {"amount": max_cost_cents, "currency": "USD"},
+        }
+
     session = client.beta.sessions.create(
-        agent=coordinator_id,
-        environment_id=environment_id,
-        title="Deal Desk — Acme Corp RFP",
+        **session_args,
     )
     Path(".last_session_id").write_text(session.id)
+    if max_cost_cents:
+        print(f"Session budget: USD {int(max_cost_cents) / 100:.2f}")
 
     user_message = (
         "An RFP has just landed. Please run the standard Deal Desk process:\n"
@@ -107,9 +149,20 @@ def main() -> None:
                         print(block.text, end="", flush=True)
             elif t == "agent.tool_use":
                 print(f"\n  [tool: {getattr(event, 'name', '?')}]", flush=True)
+            elif t == "session.usage":
+                print_usage("\n[usage snapshot]", event.usage)
             elif t == "session.status_idle":
                 print("\n\n[swarm finished]")
                 break
+
+    final_session = client.beta.sessions.retrieve(session.id)
+    print_usage("Final session usage", final_session.usage)
+
+    print("\nUsage by session thread:")
+    for thread in client.beta.sessions.threads.list(session.id):
+        agent = getattr(thread, "agent", None)
+        agent_name = getattr(agent, "name", None) or getattr(agent, "type", "unknown")
+        print_usage(f"  {agent_name} ({thread.id})", thread.usage)
 
     OUTPUT_DIR.mkdir(exist_ok=True)
     transcript_path = OUTPUT_DIR / "coordinator-transcript.txt"

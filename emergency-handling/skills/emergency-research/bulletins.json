@@ -1,0 +1,59 @@
+{
+  "incident_id": "EXERCISE-RIVERBEND-2026-11-06",
+  "exercise_only": true,
+  "as_of": "2026-11-06T09:00:00-05:00",
+  "sources": [
+    {
+      "id": "DEMO-EM-01",
+      "title": "Riverbend flood situation bulletin",
+      "issuer": "Fictional Riverbend Emergency Management",
+      "timestamp": "2026-11-06T08:30:00-05:00",
+      "fictional": true,
+      "facts": [
+        "Low-lying streets in East Orchard have standing floodwater; depth and current are not surveyed.",
+        "Households should prepare for possible evacuation and monitor official radio announcements; this bulletin does not declare any route safe.",
+        "No mandatory evacuation order has been issued in this exercise bulletin as of 08:30; this is not assurance that staying is safe.",
+        "An accessible assistance request channel and reception center are being planned, but no opening time, address, capacity or transport is confirmed."
+      ]
+    },
+    {
+      "id": "DEMO-WATER-02",
+      "title": "Water network disruption and contamination precaution",
+      "issuer": "Fictional Riverbend Water Utility",
+      "timestamp": "2026-11-06T08:15:00-05:00",
+      "fictional": true,
+      "facts": [
+        "The East Orchard mains supply has lost pressure and is unavailable in this exercise.",
+        "Do not consume tap water or floodwater until the utility confirms safe use; possible chemical contamination has not been ruled out.",
+        "Boiling does not remove chemical contamination. Do not treat boiling or ordinary camping filters as proof of safety.",
+        "Sealed commercial drinking water is preferred. A distribution point is being arranged but its location and opening time are not confirmed.",
+        "No restoration estimate is available."
+      ]
+    },
+    {
+      "id": "DEMO-POWER-03",
+      "title": "Power outage safety update",
+      "issuer": "Fictional Riverbend Electric Cooperative",
+      "timestamp": "2026-11-06T08:00:00-05:00",
+      "fictional": true,
+      "facts": [
+        "A neighborhood power outage is ongoing; restoration time is unknown.",
+        "Stay away from fallen lines and flooded electrical equipment. Do not enter water to reach a switchboard.",
+        "Never use grills, camp stoves or generators inside homes or garages. Use battery lighting."
+      ]
+    },
+    {
+      "id": "DEMO-HEALTH-04",
+      "title": "Household health precautions during flooding",
+      "issuer": "Fictional Riverbend Public Health Service",
+      "timestamp": "2026-11-06T08:45:00-05:00",
+      "fictional": true,
+      "facts": [
+        "Avoid contact with floodwater and keep children out of it; cover wounds and seek care for worsening redness, swelling or fever.",
+        "Breathing difficulty, confusion, fainting, chest pain or severe dehydration require urgent assessment through emergency services.",
+        "Keep prescribed medication, mobility aids and an asthma action plan accessible; do not change medication doses based on this exercise.",
+        "Headache, dizziness or nausea affecting multiple people can signal carbon monoxide exposure: move to fresh air if safe and call emergency services."
+      ]
+    }
+  ]
+}

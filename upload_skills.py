@@ -43,7 +43,7 @@ def main() -> None:
     print("Checking for existing skills...")
     existing_by_title: dict[str, str] = {}
     for page in client.beta.skills.list(source="custom"):
-        existing_by_title[page.display_title] = page.id
+        existing_by_title[page.display_name] = page.id
 
     uploaded: dict[str, str] = {}
 
